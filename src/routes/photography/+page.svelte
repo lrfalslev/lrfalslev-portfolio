@@ -1,1 +1,1 @@
-cool pics
+cool pics coming soon

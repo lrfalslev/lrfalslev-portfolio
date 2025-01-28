@@ -1,7 +1,8 @@
 <script lang="ts">
 	import '../app.css';
 	import "tailwindcss/tailwind.css";
-	let { children } = $props();
+	import { page } from '$app/state';
+	let { children } = $props();	
 </script>
 
 <!-- WIP get buttons to have equal widths inside navbar-center -->
@@ -23,9 +24,9 @@
 	</div>
 	<div class="navbar-center">
 		<ul class="menu menu-horizontal px-1">
-			<li><a href="/" class="btn rounded-md btn-ghost text-xl">Home</a></li>
-			<li><a href="/resume" class="btn rounded-md btn-ghost text-xl">Resume</a></li>
-			<li><a href="/photography" class="btn rounded-md btn-ghost text-xl">Photography</a></li>
+			<li class="px-1"><a href="/" class:btn-active="{page.url.pathname === '/'}" class="btn rounded-md btn-ghost text-xl">Home</a></li>
+			<li class="px-1"><a href="/resume" class:btn-active="{page.url.pathname === '/resume'}" class="btn rounded-md btn-ghost text-xl">Resume</a></li>
+			<li class="px-1"><a href="/photography" class:btn-active="{page.url.pathname === '/photography'}" class="btn rounded-md btn-ghost text-xl">Photography</a></li>
 		</ul>
 	</div>
 	<div class="navbar-end">

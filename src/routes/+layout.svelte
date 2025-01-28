@@ -5,13 +5,6 @@
 	let { children } = $props();	
 </script>
 
-<!-- WIP get buttons to have equal widths inside navbar-center -->
-<!-- <ul class="flex flex-row flex-nowrap items-center gap-5 justify-center py-12">
-	<li class="btn rounded-md btn-ghost text-xl flex-1 flex-grow"><a href="/">Home</a></li>
-	<li class="btn rounded-md btn-ghost text-xl flex-1 flex-grow"><a href="/resume">Resume</a></li>
-	<li class="btn rounded-md btn-ghost text-xl flex-1 flex-grow"><a href="/photography">Photography</a></li>
-</ul> -->
-
 <div class="navbar bg-base-200 min-h-0 h-5rem">
 	<div class="navbar-start">
 		<div class="hidden md:flex">
@@ -23,10 +16,21 @@
 		</div>
 	</div>
 	<div class="navbar-center">
-		<ul class="menu menu-horizontal px-1">
-			<li class="px-1"><a href="/" class:btn-active="{page.url.pathname === '/'}" class="btn rounded-md btn-ghost text-xl">Home</a></li>
-			<li class="px-1"><a href="/resume" class:btn-active="{page.url.pathname === '/resume'}" class="btn rounded-md btn-ghost text-xl">Resume</a></li>
-			<li class="px-1"><a href="/photography" class:btn-active="{page.url.pathname === '/photography'}" class="btn rounded-md btn-ghost text-xl">Photography</a></li>
+		<ul class="menu menu-horizontal">
+			<li class="px-1 min-w-30 md:min-w-40">
+				<a href="/" class:btn-active="{page.url.pathname === '/'}"
+					class="btn rounded-md btn-ghost text-xl">Home</a>
+			</li>
+			<li class="px-1 min-w-30 md:min-w-40">
+				<a href="/resume" class:btn-active="{page.url.pathname === '/resume'}"
+					class="btn rounded-md btn-ghost text-xl">Resume</a>
+			</li>
+			<li class="px-1 min-w-30 md:min-w-40">
+				<a href="/photography" class:btn-active="{page.url.pathname === '/photography'}"
+					class="btn rounded-md btn-ghost text-xl max-md:hidden">Photography</a>
+				<a href="/photography" class:btn-active="{page.url.pathname === '/photography'}"
+					class="btn rounded-md btn-ghost text-xl visible md:hidden">Photos</a>
+			</li>
 		</ul>
 	</div>
 	<div class="navbar-end">

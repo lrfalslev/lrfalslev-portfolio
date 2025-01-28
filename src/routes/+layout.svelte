@@ -17,17 +17,19 @@
 	</div>
 	<div class="navbar-center">
 		<ul class="menu menu-horizontal">
-			<li class="px-1 min-w-40">
+			<li class="px-1 min-w-30 md:min-w-40">
 				<a href="/" class:btn-active="{page.url.pathname === '/'}"
 					class="btn rounded-md btn-ghost text-xl">Home</a>
 			</li>
-			<li class="px-1 min-w-40">
+			<li class="px-1 min-w-30 md:min-w-40">
 				<a href="/resume" class:btn-active="{page.url.pathname === '/resume'}"
 					class="btn rounded-md btn-ghost text-xl">Resume</a>
 			</li>
-			<li class="px-1 min-w-40">
+			<li class="px-1 min-w-30 md:min-w-40">
 				<a href="/photography" class:btn-active="{page.url.pathname === '/photography'}"
-					class="btn rounded-md btn-ghost text-xl">Photography</a>
+					class="btn rounded-md btn-ghost text-xl max-md:hidden">Photography</a>
+				<a href="/photography" class:btn-active="{page.url.pathname === '/photography'}"
+					class="btn rounded-md btn-ghost text-xl visible md:hidden">Photos</a>
 			</li>
 		</ul>
 	</div>

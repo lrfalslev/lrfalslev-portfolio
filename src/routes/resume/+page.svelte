@@ -1,11 +1,11 @@
 <script lang="ts">
     import Resume from './components/Resume.svelte';
-    let date = new Date().toISOString().split('T')[0];
+    let date = new Date().toJSON().slice(0,10);
     let filename = "LucasFalslevResume" + date + ".pdf";
 </script>
 
 <div class="w-[95%] md:w-5/6 lg:w-2/3 text-[8px] md:text-sm lg:text-base mt-3 max-h-screen overflow-y-auto bg-primary">
-    <Resume/>
+    <Resume />
 </div>
 
 <div class="btn my-2">

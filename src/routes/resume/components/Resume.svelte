@@ -1,13 +1,13 @@
 <script lang="ts">
 </script>
 
-<div class="py-4 px-4 lg:px-8 xl:px-28">
+<div id="resume" class="py-4 px-4 lg:px-8 xl:px-28">
 	<h1 class="text-4xl text-center pb-2">Lucas Falslev</h1>
-    <div class="justify">
-        <span>lrfalslev@gmail.com</span>
-        <span>(385) 313-7895</span>
-        <a class="link" href="https://lrfalslev-portfolio.pages.dev">lrfalslev-portfolio.pages.dev</a>
-    </div>
+	<div class="justify">
+		<span>lrfalslev@gmail.com</span>
+		<span>(385) 313-7895</span>
+		<a class="link" href="https://lrfalslev-portfolio.pages.dev">lrfalslev-portfolio.pages.dev</a>
+	</div>
 	<div>
 		<h2>SKILLS:</h2>
 		<ul>
@@ -62,12 +62,12 @@
 	<div>
 		<h2>EDUCATION:</h2>
 		<div>
-            <div class="justify">
-                <span
-                    ><b class="text-xs md:text-sm lg:text-lg">University of Utah</b>, Salt Lake City, UT</span
-                >
-                <span>Graduated 2021</span>
-            </div>
+			<div class="justify">
+				<span
+					><b class="text-xs md:text-sm lg:text-lg">University of Utah</b>, Salt Lake City, UT</span
+				>
+				<span>Graduated 2021</span>
+			</div>
 			<ul class="list-disc list-outside ms-8">
 				<li>B.S. in Computer Science</li>
 				<li>Minor in Spanish</li>
@@ -118,10 +118,10 @@
 
 {#snippet project(project: any)}
 	<div class="[&:not(:first-child)]:mt-2">
-        <div class="justify">
-            <b class="text-xs md:text-sm lg:text-lg">{project.name}</b>
-            <span>{project.stack}</span>
-        </div>
+		<div class="justify">
+			<b class="text-xs md:text-sm lg:text-lg">{project.name}</b>
+			<span>{project.stack}</span>
+		</div>
 		<a class="link" href={project.link}>{project.link}</a>
 		<ul class="list-disc list-outside ms-8">
 			{#each project.points as point}
@@ -131,11 +131,20 @@
 	</div>
 {/snippet}
 
-<style lang=postcss>
-    h2 {
-        @apply mt-4 border-b
-    }
-    div.justify {
-        @apply inline-flex items-center justify-between w-full
-    }
+<style lang="postcss">
+	h2 {
+		@apply mt-4 border-b;
+	}
+	div.justify {
+		@apply inline-flex w-full items-center justify-between;
+	}
+	@media print {
+		:global(body) {
+			visibility: hidden;
+		}
+		#resume {
+			visibility: visible;
+			font-family: 'Times New Roman';
+		}
+	}
 </style>

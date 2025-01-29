@@ -29,7 +29,7 @@
 				<a href="/photography" class:btn-active="{page.url.pathname === '/photography'}"
 					class="btn rounded-md btn-ghost text-xl max-md:hidden">Photography</a>
 				<a href="/photography" class:btn-active="{page.url.pathname === '/photography'}"
-					class="btn rounded-md btn-ghost text-xl visible md:hidden">Photos</a>
+					class="btn rounded-md btn-ghost text-xl float md:hidden">Photos</a>
 			</li>
 		</ul>
 	</div>

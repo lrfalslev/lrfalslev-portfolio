@@ -1,7 +1,7 @@
 <script lang="ts">
-	import letterboxd from '$lib/assets/letterboxd.svg';
-	import github from '$lib/assets/github.svg';
-	import linkedin from '$lib/assets/linkedin.svg';
+        import Letterboxd from '$lib/assets/letterboxd.svelte';
+        import Github from '$lib/assets/github.svelte';
+        import Linkedin from '$lib/assets/linkedin.svelte';
 </script>
 
 <div
@@ -19,58 +19,27 @@
 				/>
 			</div>
 		</div>
-		<div class="font-extrabold">
-			<h1 class="my-5 text-2xl md:text-4xl lg:text-5xl">Hello, I'm Luke!</h1>
-			<p class="font-light md:py-6 md:text-2xl">
+		<div class="font-extrabold text-center md:text-left">
+			<h1 class="my-2 text-2xl md:text-4xl lg:text-5xl">Hello, I'm Luke!</h1>
+			<p class="font-light my-4 md:text-2xl">
 				I'm a full stack software developer who likes elegant solutions. I enjoy cycling, good food,
 				snowboarding, and watching movies.
 			</p>
-			<div class="inline-flex w-full items-center justify-center py-4 md:py-0">
-				<a
-					target="_blank"
-					aria-label="github"
-					rel="noopener noreferrer"
-					href="https://github.com/lrfalslev"
-					class="px-1"
-				>
-					<div class="h-12 w-12">
-						<img src={github} alt="Image" />
-					</div>
-				</a>
-				<a
-					target="_blank"
-					aria-label="linkedin"
-					rel="noopener noreferrer"
-					href="https://www.linkedin.com/in/luke-falslev/"
-					class="px-1"
-				>
-					<div class="h-12 w-12">
-						<img src={linkedin} alt="linkedin" />
-					</div>
-				</a>
-				<a
-					target="_blank"
-					aria-label="letterboxd"
-					rel="noopener noreferrer"
-					href="https://letterboxd.com/lrfalslev/"
-					class="px-1"
-				>
-					<div class="h-12 w-12">
-						<img src={letterboxd} alt="letterboxd" />
-					</div>
-				</a>
-				<!-- {@render social('https://github.com/lrfalslev', 'github', '{createNote}')}
-				{@render social('https://www.linkedin.com/in/luke-falslev/', 'linkedin', { linkedin })}
-				{@render social('https://letterboxd.com/lrfalslev/', 'letterboxd', { letterboxd })} -->
+			<div class="inline-flex w-full items-center justify-center py-4">
+				{@render social('github', 'https://github.com/lrfalslev', Github)}
+				{@render social('linkedin', 'https://www.linkedin.com/in/luke-falslev/', Linkedin)}
+				{@render social('letterboxd', 'https://letterboxd.com/lrfalslev/', Letterboxd)}
 			</div>
 		</div>
 	</div>
 </div>
 
-{#snippet social(link: string, name: string, logo: string)}
-	<a target="_blank" aria-label={name} rel="noopener noreferrer" href={link}>
-        <div class="h-12 w-12">
-            <img src={logo} alt={name} />
+{#snippet social(name: string, link: string, Icon: any)}
+<div class="px-4 md:px-7" >
+	<a target="_blank" aria-label={name} rel="noopener noreferrer" href={link} class="fill-[#d6d6d6] hover:fill-white">
+        <div class="h-8 md:h-12 w-8 md:w-12">
+            <Icon />
         </div>
 	</a>
+</div>
 {/snippet}

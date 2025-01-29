@@ -1,5 +1,4 @@
 <div class="m-4">
-
   <div class="m-4">
     <div visible max-md:hidden>
       cool pics coming soon
@@ -18,5 +17,4 @@
       </div>
     </div>
   </div>
-
 </div>

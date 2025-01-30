@@ -36,7 +36,7 @@
 			{@render experience({
 				company: 'Fox Pest Control',
 				location: 'Logan, UT',
-				titles: ['Software Developer II', 'Software Developer I'],
+				titles: ['Jr Software Architect', 'Software Developer'],
 				tenures: ['April 2022 – Dec 2022', 'Jun 2021 – Mar 2022'],
 				points: [
 					'Refactored payroll processing service to decrease processing time by 50%',
@@ -79,7 +79,7 @@
 		<div>
 			{@render project({
 				name: 'Personal Portfolio',
-				stack: 'Sveltekit, Tailwind, TypeScript, DaisyUI',
+				stack: 'Sveltekit, Tailwind, TypeScript',
 				link: 'https://github.com/lrfalslev/lrfalslev-portfolio',
 				points: [
 					'Designed and coded a responsive personal portfolio with Sveltekit',

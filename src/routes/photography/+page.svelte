@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Lightbox from './components/Lightbox.svelte';
+
   let items = [
     'P1010819.jpg',
     'P1010859.jpg',
@@ -49,7 +51,20 @@
     img14,
     img15,
   ];
+  
+  function fullScreen (event: any) {
+      // const targetElement = event.target;
+      const targetElement = document.getElementById('lightbox');
+
+      var requestMethod = targetElement?.requestFullscreen;
+
+      if (requestMethod) {
+        requestMethod.call(targetElement);
+      }
+    }
 </script>
+
+<Lightbox />
 
 <div class="w-full max-h-screen overflow-y-auto bg-primary no-scrollbar">
   <div class="grid 
@@ -57,20 +72,25 @@
     gap-4       md:gap-8        lg:gap-12 
     py-4        md:py-8         lg:py-20 
     mx-4        md:mx-8         lg:mx-20">
-    {#each imgs as img}
-    <div class="flex items-center justify-center">
-      <div class="card card-compact bg-base-300 shadow-xl">
-        <figure>
-          <img src={img} alt="img" />
-        </figure>
-        <div class="card-body">
-          <h2 class="card-title">Image name</h2>
-          <p>description</p>
-        </div>
+    {#each imgs as img, idx}
+      <div class="flex items-center justify-center">
+        <button on:click={event => fullScreen(event)} class="card card-compact bg-base-300 shadow-xl">
+          <figure>
+            {#if idx < 3}
+              <img src={img} alt="img" />
+            {:else}
+              <img loading=lazy src={img} alt="img" />
+            {/if}
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">Image name</h2>
+            <p>description</p>
+          </div>
+        </button>
       </div>
-    </div>
     {/each}
   </div>
+  
 </div>
 
 <style>
@@ -82,8 +102,6 @@
   /* Hide scrollbar for IE, Edge and Firefox */
   .no-scrollbar {
     -ms-overflow-style: none;
-    /* IE and Edge */
     scrollbar-width: none;
-    /* Firefox */
   }
 </style>

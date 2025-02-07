@@ -1,29 +1,22 @@
 <script lang="ts">
   import Lightbox from './components/Lightbox.svelte';
+  import type { Album } from './components/Lightbox.svelte';
 
-  import img1 from '$lib/assets/pictures/P1010819.jpg';
-  import img2 from '$lib/assets/pictures/P1010859.jpg';
-  import img3 from '$lib/assets/pictures/P1010879.jpg';
-  import img4 from '$lib/assets/pictures/P1010881.jpg';
-  import img5 from '$lib/assets/pictures/P1020990.jpg';
-  import img6 from '$lib/assets/pictures/P1030022.jpg';
-  import img7 from '$lib/assets/pictures/P1030085.jpg';
-  import img8 from '$lib/assets/pictures/P1030088.jpg';
-  import img9 from '$lib/assets/pictures/P1030162.jpg';
-  import img10 from '$lib/assets/pictures/P1030164.jpg';
-  import img11 from '$lib/assets/pictures/P1030167.jpg';
-  import img12 from '$lib/assets/pictures/P1030173.jpg';
-  import img13 from '$lib/assets/pictures/P1030243.jpg';
-  import img14 from '$lib/assets/pictures/P1030250.jpg';
-  import img15 from '$lib/assets/pictures/P1030257.jpg';
-
+  const modules = import.meta.glob('$lib/assets/photography/*/*.jpg');
+  
   let albumIdx = 0;
-  let albums = [
-    {description: "Farmington Station", images: [img1, img2, img3, img4]},
-    {description: "Old Granary", images: [img5, img6, img7, img8]},
-    {description: "USU Greenhouse", images: [img9, img10, img11, img12]},
-    {description: "Moab", images: [img13, img14, img15]}
-  ];
+  const albums: Array<Album> = [];
+
+  for (const path in modules) {
+    const pathSegments = path.split('/');
+    const directoryName = pathSegments[pathSegments.length - 2];
+    
+    if (!albums.some(a => a.name == directoryName)) {
+      albums.push({name: directoryName, images: [path]});
+    } else {
+      albums.find(a => a.name == directoryName)?.images.push(path);
+    }
+  }
   
   function openLightbox (idx: number) {
       albumIdx = idx;
@@ -49,14 +42,10 @@
       <div class="flex items-center justify-center">
         <button on:click={_ => openLightbox(idx)} class="card card-compact bg-base-300 shadow-xl">
           <figure>
-            {#if idx < 3}
-              <img src={album.images[0]} alt="img" />
-            {:else}
-              <img loading=lazy src={album.images[0]} alt="img" />
-            {/if}
+            <img src={album.images[0]} alt="img" />
           </figure>
           <div class="card-body">
-            <p>{album.description}</p>
+            <p>{album.name}</p>
           </div>
         </button>
       </div>

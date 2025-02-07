@@ -1,6 +1,13 @@
+<script module lang="ts">
+	export interface Album {
+      name: string;
+      images: Array<string>;
+    }
+</script>
+  
 <script lang="ts">
 	export let albumIdx: number;
-	export let albums: Array<any>; 
+	export let albums: Array<Album>; 
 	let imgIdx = 0;
 	let isFullScreen = false;
 
@@ -62,7 +69,7 @@
 			</button>
 		</div>
 		<div class="absolute inset-x-0 bottom-2 flex items-center justify-center">
-			<div class="flex w-16 fill-white">
+			<div class="flex h-6 fill-white">
 				{#each albums[albumIdx].images, i}
 					{#if i == imgIdx}
 						<svg viewBox="0 -960 960 960">

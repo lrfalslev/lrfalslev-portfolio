@@ -18,6 +18,8 @@
     }
   }
   
+  console.log(albums);
+
   function openLightbox (idx: number) {
       albumIdx = idx;
       const targetElement = document.getElementById('lightbox');
@@ -42,7 +44,7 @@
       <div class="flex items-center justify-center">
         <button on:click={_ => openLightbox(idx)} class="card card-compact bg-base-300 shadow-xl">
           <figure>
-            <img src={album.images[0]} alt="img" />
+            <img src={album.images[0]} alt="{album.images[0].split('/').pop()}" />
           </figure>
           <div class="card-body">
             <p>{album.name}</p>

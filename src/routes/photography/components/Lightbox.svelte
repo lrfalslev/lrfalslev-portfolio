@@ -91,7 +91,7 @@
 			</svg>
 		</button>
 	{/if}
-	<img class="w-full h-full object-scale-down" src={albums[albumIdx].images[imgIdx]} alt="img" />
+	<img class="w-full h-full object-scale-down" src={albums[albumIdx].images[imgIdx]} alt="{albums[albumIdx].images[imgIdx].split('/').pop()}" />
 </div>
 
 <svelte:window on:keydown|preventDefault={onKeyDown} on:fullscreenchange={_ => isFullScreen = !isFullScreen} />

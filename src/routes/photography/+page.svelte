@@ -1,6 +1,7 @@
 <script lang="ts">
   import Lightbox from './components/Lightbox.svelte';
   import type { Album } from './components/Lightbox.svelte';
+  import Image from '$lib/components/Image.svelte';
   
   const assets: { [key: string]: string } = import.meta.glob('$lib/assets/photography/*/*.jpg', {
     query: '?url',
@@ -32,7 +33,7 @@
 <Lightbox bind:albumIdx={albumIdx} albums={albums}/>
 
 <div class="w-full max-h-screen overflow-y-auto bg-primary no-scrollbar">
-  <div class="grid 
+  <div class="grid
     grid-cols-1 md:grid-cols-2  lg:grid-cols-3 
     gap-4       md:gap-8        lg:gap-12 
     py-4        md:py-8         lg:py-20 
@@ -41,7 +42,8 @@
       <div class="flex items-center justify-center">
         <button on:click={_ => openLightbox(idx)} class="card card-compact bg-base-300 shadow-xl">
           <figure>
-            <img src={album.images[0]} alt="{album.images[0].split('/').pop()}" />
+            <!-- <img src={album.images[0]} alt="{album.images[0].split('/').pop()}" /> -->
+            <Image src={album.images[0]} alt="{album.images[0].split('/').pop()}" />
           </figure>
           <div class="card-body">
             <p>{album.name}</p>

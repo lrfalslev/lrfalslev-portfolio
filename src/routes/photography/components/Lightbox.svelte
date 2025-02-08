@@ -5,36 +5,29 @@
     }
 </script>
   
-<script lang="ts">	
-	import { onMount } from 'svelte';
+<script lang="ts">
 	export let albumIdx: number;
 	export let albums: Array<Album>; 
 	let imgIdx = 0;
 	let isFullScreen = false;
 	let uiVisible = false;
 	let indicatorsVisible = false;
-	let loading = false;
-	let currentImage = '';
 
 	function imgIterate(change: number) {
-		loading = true;
 		showIndicators();
 		const imgCount = albums[albumIdx].images.length;
 		imgIdx = (imgIdx + change + imgCount) % imgCount;
-		currentImage = `${albums[albumIdx].images[imgIdx]}?t=${new Date().getTime()}`;
 	}
 
 	function albumIterate(change: number) {
 		showIndicators();
 		albumIdx = (albumIdx + change + albums.length) % albums.length;
 		imgIdx = 0;
-		currentImage = `${albums[albumIdx].images[imgIdx]}?t=${new Date().getTime()}`;
 	}
 
 	function handleFullscreenChange() {
 		isFullScreen = !isFullScreen;
-		imgIdx = 0;    
-		currentImage = `${albums[albumIdx].images[imgIdx]}?t=${new Date().getTime()}`;
+		imgIdx = 0;
 	}
 
 	function mouseActive() {
@@ -76,11 +69,6 @@
 				return false;
 		}
 	}
-
-	// Initialize the first image URL
-	onMount(() => {
-	currentImage = `${albums[albumIdx].images[imgIdx]}?t=${new Date().getTime()}`;
-	});
 </script>
 
 <div id="lightbox" class="{isFullScreen ? '' : 'hidden'} absolute h-full w-full bg-primary">
@@ -123,19 +111,8 @@
 				{/each}
 			</div>
 		</div>
-	{/if}
-	{#if loading}
-		<div class="w-full h-full flex min-h-auto min-w-auto justify-center items-center">
-			<div class="w-16 h-16 border-8 border-dashed rounded-full animate-spin bg-primary"></div>
-		</div>
-	{:else}
-		<img
-			class="w-full h-full object-scale-down"
-			src={currentImage}
-			alt="{albums[albumIdx].images[imgIdx].split('/').pop()}"
-			on:load={_ => {loading = false; console.log('loading: '+loading)}} 
-		/>
-	{/if}
+	{/if}	
+	<img class="w-full h-full object-scale-down" src={albums[albumIdx].images[imgIdx]} alt="{albums[albumIdx].images[imgIdx].split('/').pop()}" />
 </div>
 
 <svelte:window on:fullscreenchange={handleFullscreenChange} on:mousemove={mouseActive}  

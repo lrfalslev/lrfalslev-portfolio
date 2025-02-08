@@ -52,7 +52,7 @@
   </div>
 </div>
 
-<p>This page is a WIP</p>
+<p>This page is a work in progress :)</p>
 
 <style>
   /* Hide scrollbar for Chrome, Safari and Opera */

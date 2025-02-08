@@ -10,13 +10,17 @@
 	export let albums: Array<Album>; 
 	let imgIdx = 0;
 	let isFullScreen = false;
+	let uiVisible = false;
+	let indicatorsVisible = false;
 
 	function imgIterate(change: number) {
+		showIndicators();
 		const imgCount = albums[albumIdx].images.length;
 		imgIdx = (imgIdx + change + imgCount) % imgCount;
 	}
 
 	function albumIterate(change: number) {
+		showIndicators();
 		albumIdx = (albumIdx + change + albums.length) % albums.length;
 		imgIdx = 0;
 	}
@@ -24,6 +28,29 @@
 	function handleFullscreenChange() {
 		isFullScreen = !isFullScreen;
 		imgIdx = 0;
+	}
+
+	function mouseActive() {
+		document.body.style.cursor = 'default';
+		uiVisible = true;
+		
+		resetHideTimeout(() => {
+			uiVisible = false;
+			document.body.style.cursor = 'none';
+		});
+	}
+
+	function showIndicators() {
+		indicatorsVisible = true;
+
+		resetHideTimeout(() => {
+			indicatorsVisible = false;
+		});
+	}
+
+	function resetHideTimeout(action: () => void) {
+		clearTimeout((window as any).hideTimeout);
+		(window as any).hideTimeout = setTimeout(action, 750);
 	}
 
 	function onKeyDown(e: KeyboardEvent) {
@@ -45,21 +72,30 @@
 </script>
 
 <div id="lightbox" class="{isFullScreen ? '' : 'hidden'} absolute h-full w-full bg-gray-800">
-	{#if albums[albumIdx].images.length > 1}
-		<div class="absolute inset-y-0 left-0 flex items-center justify-center">
-			<button aria-label="prev" on:click={_ => imgIterate(-1)} class="icon h-3/4 rounded-r-3xl">
-				<svg viewBox="0 -960 960 960">
-					<path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
-				</svg>
-			</button>
-		</div>
-		<div class="absolute inset-y-0 right-0 flex items-center justify-center">
-			<button aria-label="next" on:click={_ => imgIterate(1)} class="icon h-3/4 rounded-l-3xl">
-				<svg viewBox="0 -960 960 960">
-					<path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
-				</svg>
-			</button>
-		</div>
+	{#if uiVisible}
+		{#if albums[albumIdx].images.length > 1}
+			<div class="absolute inset-y-0 left-0 flex items-center justify-center">
+				<button aria-label="prev" on:click={_ => imgIterate(-1)} class="icon h-3/4 rounded-r-3xl">
+					<svg viewBox="0 -960 960 960">
+						<path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
+					</svg>
+				</button>
+			</div>
+			<div class="absolute inset-y-0 right-0 flex items-center justify-center">
+				<button aria-label="next" on:click={_ => imgIterate(1)} class="icon h-3/4 rounded-l-3xl">
+					<svg viewBox="0 -960 960 960">
+						<path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
+					</svg>
+				</button>
+			</div>
+		{/if}
+		<button aria-label="close" on:click={_ => document.exitFullscreen()} class="absolute top-0 right-0 flex items-center justify-center icon rounded-bl-3xl">
+			<svg viewBox="0 -960 960 960">
+				<path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+			</svg>
+		</button>
+	{/if}
+	{#if uiVisible || indicatorsVisible}
 		<div class="absolute inset-x-0 bottom-2 flex items-center justify-center">
 			<div class="flex h-6 fill-white">
 				{#each albums[albumIdx].images, i}
@@ -76,17 +112,11 @@
 			</div>
 		</div>
 	{/if}
-	{#if isFullScreen}
-		<button aria-label="close" on:click={_ => document.exitFullscreen()} class="absolute top-0 right-0 flex items-center justify-center icon rounded-bl-3xl">
-			<svg viewBox="0 -960 960 960">
-				<path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
-			</svg>
-		</button>
-	{/if}
 	<img class="w-full h-full object-scale-down" src={albums[albumIdx].images[imgIdx]} alt="{albums[albumIdx].images[imgIdx].split('/').pop()}" />
 </div>
 
-<svelte:window on:keydown|preventDefault={onKeyDown} on:fullscreenchange={_ => handleFullscreenChange()} />
+<svelte:window on:fullscreenchange={handleFullscreenChange} on:mousemove={mouseActive}  
+	on:keydown|preventDefault={onKeyDown}/>
 
 <style lang="postcss">
 	.icon {

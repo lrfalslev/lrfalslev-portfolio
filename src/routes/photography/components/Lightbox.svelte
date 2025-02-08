@@ -12,24 +12,21 @@
 	let isFullScreen = false;
 
 	function imgIterate(change: number) {
-		imgIdx += change;
-		if (imgIdx == -1) {
-			imgIdx = albums[albumIdx].images.length - 1;
-		} else if (imgIdx == albums[albumIdx].images.length) {
-			imgIdx = 0;
-		}
+		const imgCount = albums[albumIdx].images.length;
+		imgIdx = (imgIdx + change + imgCount) % imgCount;
 	}
 
 	function albumIterate(change: number) {
-		albumIdx += change;
-		if (albumIdx == -1) {
-			albumIdx = albums.length - 1;
-		} else if (albumIdx == albums.length) {
-			albumIdx = 0;
-		}
+		albumIdx = (albumIdx + change + albums.length) % albums.length;
+		imgIdx = 0;
 	}
 
-	function onKeyDown(e: any) {
+	function handleFullscreenChange() {
+		isFullScreen = !isFullScreen;
+		imgIdx = 0;
+	}
+
+	function onKeyDown(e: KeyboardEvent) {
 		switch (e.key) {
 			case 'ArrowLeft':
 				imgIterate(-1);
@@ -41,12 +38,7 @@
 				document.exitFullscreen();
 				break;
 			case 'Tab':
-				if(e.shiftKey) {
-					albumIterate(-1);
-				} else {
-					albumIterate(1);
-				}
-				imgIdx = 0;
+				albumIterate(e.shiftKey ? -1 : 1);
 				return false;
 		}
 	}
@@ -94,7 +86,7 @@
 	<img class="w-full h-full object-scale-down" src={albums[albumIdx].images[imgIdx]} alt="{albums[albumIdx].images[imgIdx].split('/').pop()}" />
 </div>
 
-<svelte:window on:keydown|preventDefault={onKeyDown} on:fullscreenchange={_ => isFullScreen = !isFullScreen} />
+<svelte:window on:keydown|preventDefault={onKeyDown} on:fullscreenchange={_ => handleFullscreenChange()} />
 
 <style lang="postcss">
 	.icon {

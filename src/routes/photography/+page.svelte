@@ -1,34 +1,31 @@
 <script lang="ts">
   import Lightbox from './components/Lightbox.svelte';
   import type { Album } from './components/Lightbox.svelte';
-
-  const modules = import.meta.glob('$lib/assets/photography/*/*.jpg');
   
+  const assets: { [key: string]: string } = import.meta.glob('$lib/assets/photography/*/*.jpg', {
+    query: '?url',
+    import: 'default',
+    eager: true,
+  });
+
   let albumIdx = 0;
-  const albums: Array<Album> = [];
+  const albums: Album[] = [];
 
-  for (const path in modules) {
-    const pathSegments = path.split('/');
-    const directoryName = pathSegments[pathSegments.length - 2];
-    
-    if (!albums.some(a => a.name == directoryName)) {
-      albums.push({name: directoryName, images: [path]});
+  Object.entries(assets).forEach(([path, img]) => {
+    const directoryName = path.split('/').slice(-2, -1)[0];
+    const album = albums.find(a => a.name === directoryName);
+
+    if (album) {
+      album.images.push(img);
     } else {
-      albums.find(a => a.name == directoryName)?.images.push(path);
+      albums.push({ name: directoryName, images: [img] });
     }
-  }
-  
-  console.log(albums);
+  });
 
   function openLightbox (idx: number) {
       albumIdx = idx;
       const targetElement = document.getElementById('lightbox');
-
-      var requestMethod = targetElement?.requestFullscreen;
-
-      if (requestMethod) {
-        requestMethod.call(targetElement);
-      }
+      targetElement?.requestFullscreen?.call(targetElement);
     }
 </script>
 
@@ -53,8 +50,9 @@
       </div>
     {/each}
   </div>
-  
 </div>
+
+<p>This page is a WIP</p>
 
 <style>
   /* Hide scrollbar for Chrome, Safari and Opera */

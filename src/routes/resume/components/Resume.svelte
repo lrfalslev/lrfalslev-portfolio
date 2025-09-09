@@ -2,20 +2,11 @@
 </script>
 
 <div id="resume" class="py-4 px-4 lg:px-8 xl:px-28">
-	<h1 class="text-4xl text-center pb-2">Lucas Falslev</h1>
+	<h1 class="text-2xl text-center pb-2">Lucas Falslev</h1>
 	<div class="justify">
 		<span>lrfalslev@gmail.com</span>
 		<span>(385) 313-7895</span>
-		<a class="link" href="https://lrfalslev-portfolio.pages.dev">lrfalslev-portfolio.pages.dev</a>
-	</div>
-	<div>
-		<h2>SKILLS:</h2>
-		<ul>
-			<li><b>Most Experienced</b> - C#, PHP</li>
-			<li><b>Some Experience</b> - JavaScript, HTML/CSS</li>
-			<li><b>Frameworks</b> - .NET 8, .NET 6, Laravel 7, SvelteKit</li>
-			<li><b>Databases</b> - MongoDB, MSSQL, MySQL</li>
-		</ul>
+		<a class="link" href="https://www.linkedin.com/in/luke-falslev/">linkedin.com/in/luke-falslev</a>
 	</div>
 	<div>
 		<h2>EXPERIENCE:</h2>
@@ -24,13 +15,13 @@
 				company: 'J.B. Hunt',
 				location: 'Remote, USA',
 				titles: ['Software Developer II', 'Software Developer I'],
-				tenures: ['2024 – Present', 'Dec 2022 – Sept 2024'],
+				tenures: ['Sept 2024 – Present', 'Dec 2022 – Sept 2024'],
 				points: [
-					'Added new nested data structure in request space to support International and Final Mile requests, maintained backwards compatibility for current processes/systems',
-					'Ingested messages from ActiveMQ, Kafka and API calls; updated and added API endpoints to surface new order and request tracking information',
-					'Converted apps from Kubernetes YAML/Kustomize manifests to Helm Charts',
-					'Collaborated with senior developers and architects to determine solutions and implemented them, assisted interns with onboarding and roadblocks',
-					'Updated schemas to current API specifications, documented processes in team wikis'
+					'Designed and implemented a recursive data structure to support granular item-level tracking and new logistics workflows, while preserving backward compatibility with APIs and consumers.',
+					'Improved maintainability and data integrity by rewriting services, consolidating processes, and standardizing models, event types, and timestamps.',
+					'Migrated CI/CD from YAML/Kustomize to Helm, streamlining deployments.',
+					'Collaborated across teams to enable modernization from legacy systems by validating and troubleshooting new workflows, and ensuring functional parity.',
+					'Partnered with senior engineers on solution design and mentored interns through onboarding and technical challenges.',
 				]
 			})}
 			{@render experience({
@@ -39,11 +30,11 @@
 				titles: ['Jr Software Architect', 'Software Developer'],
 				tenures: ['April 2022 – Dec 2022', 'Jun 2021 – Mar 2022'],
 				points: [
-					'Refactored payroll processing service to decrease processing time by 50%',
-					'Developed and maintained tests to increase code coverage from 55% to over 80%',
-					'Planned and implemented a rewrite of payroll software to comply with tax law',
-					'Performed code reviews for a team of 7 developers to keep applications maintainable',
-					'Built new features and fixed bugs using PHP, Laravel, and Javascript'
+					'Refactored payroll processing service to decrease processing time by 50%.',
+					'Developed and maintained tests to increase code coverage from 55% to over 80%.',
+					'Planned and executed a rewrite of payroll software to comply with tax law.',
+					'Performed code reviews and aided in sprint planning for a team of 7 developers.',
+					'Built new features and fixed bugs using PHP, Laravel, and Javascript.'
 				]
 			})}
 			{@render experience({
@@ -52,9 +43,8 @@
 				titles: ['Route Sales Manager'],
 				tenures: ['Summers 2017 – 2020'],
 				points: [
-					'Generated over $60,000 revenue (2020)',
-					'Generated avg $40,000 revenue (2017-2019)',
-					'Provided sales training for first year reps'
+					'Generated over $60,000 in 2020 and $40,000 average in 2017-2019.',
+					'Provided sales training for first-year sales reps.'
 				]
 			})}
 		</div>
@@ -75,15 +65,24 @@
 		</div>
 	</div>
 	<div>
+		<h2>SKILLS:</h2>
+		<ul>
+			<li><b>Languages & Frameworks:</b> C#, .NET, TypeScript, SvelteKit, PHP, Laravel</li>
+			<li><b>Technologies & Tools:</b> MongoDB, SQL, Kafka, ActiveMQ, Kubernetes, Git</li>
+			<li><b>Other:</b> Fluent in Spanish</li>
+		</ul>
+	</div>
+	<div>
 		<h2>PROJECTS:</h2>
 		<div>
 			{@render project({
-				name: 'Personal Portfolio',
-				stack: 'Sveltekit, Tailwind, TypeScript',
-				link: 'https://github.com/lrfalslev/lrfalslev-portfolio',
+				name: 'Workplace Leaderboard',
+				stack: 'Sveltekit, TypeScript, SQLite',
+				link: 'https://github.com/lrfalslev/workplace-leaderboard',
 				points: [
-					'Designed and coded a responsive personal portfolio with Sveltekit',
-					'Automated deployment to Cloudflare with Github actions'
+					'Designed and built a full-stack web application to track workplace metrics and lottery tickets for an internal small business competition.',
+					'Developed a RESTful API to handle CRUD operations and query data summaries.',
+					'Integrated ApexCharts.js to render a reactive leaderboard with role-based views.'
 				]
 			})}
 			{@render project({
@@ -91,8 +90,7 @@
 				stack: 'Lua, Love2D',
 				link: 'https://github.com/coledtaylor/hackathon',
 				points: [
-					'Built a 2D top down shooter as part of a team for a USU Hackathon',
-					'Drew game world, managed camera tracking and game state'
+					'Handled camera tracking and state logic of a 2D top-down shooter for HackUSU.'
 				]
 			})}
 		</div>
@@ -118,9 +116,9 @@
 
 {#snippet project(project: any)}
 	<div class="[&:not(:first-child)]:mt-2">
-		<div class="justify">
+		<div>
 			<b class="text-xs md:text-sm lg:text-lg">{project.name}</b>
-			<span>{project.stack}</span>
+			<span>({project.stack})</span>
 		</div>
 		<a class="link" href={project.link}>{project.link}</a>
 		<ul class="list-disc list-outside ms-8">

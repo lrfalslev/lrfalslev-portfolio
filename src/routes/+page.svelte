@@ -13,8 +13,8 @@
 		<div class="avatar md:me-4">
 			<div class="w-40 h-64 md:w-60 md:h-96 rounded-2xl ring-gray-200 ring-offset-zinc-700 ring ring-offset-4">
 				<img
-					class="scale-x-[-1] size-24 object-right-top"
-					src="luke-temp-profile.jpg"
+					class="size-24 object-right-top"
+					src="LucasProfilePicture.webp"
 					alt="Luke's headshot"
 				/>
 			</div>

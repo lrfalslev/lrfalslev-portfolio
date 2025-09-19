@@ -15,12 +15,12 @@
 				company: 'J.B. Hunt',
 				location: 'Remote, USA',
 				titles: ['Software Developer II', 'Software Developer I'],
-				tenures: ['Sept 2024 – Present', 'Dec 2022 – Sept 2024'],
+				tenures: ['Sept 2024 - Present', 'Dec 2022 - Sept 2024'],
 				points: [
-					'Designed and implemented a recursive data structure to support granular item-level tracking and new logistics workflows, while preserving backward compatibility with APIs and consumers.',
-					'Improved maintainability and data integrity by rewriting services, consolidating processes, and standardizing models, event types, and timestamps.',
+					'Primary developer on an externally available tracking solution with enterprise wide integrations.',
+					'Improved maintainability and data integrity by rewriting core services, consolidating redundant processes, and standardizing data models, event types, and timestamps.',
 					'Migrated CI/CD from YAML/Kustomize to Helm, streamlining deployments.',
-					'Collaborated across teams to enable modernization from legacy systems by validating and troubleshooting new workflows, and ensuring functional parity.',
+					'Collaborated across teams to modernize legacy systems by developing and validating new workflows. Ensured functional parity, and backwards compatibility.',
 					'Partnered with senior engineers on solution design and mentored interns through onboarding and technical challenges.',
 				]
 			})}
@@ -28,7 +28,7 @@
 				company: 'Fox Pest Control',
 				location: 'Logan, UT',
 				titles: ['Jr Software Architect', 'Software Developer'],
-				tenures: ['April 2022 – Dec 2022', 'Jun 2021 – Mar 2022'],
+				tenures: ['April 2022 - Dec 2022', 'Jun 2021 - Mar 2022'],
 				points: [
 					'Refactored payroll processing service to decrease processing time by 50%.',
 					'Developed and maintained tests to increase code coverage from 55% to over 80%.',
@@ -41,7 +41,7 @@
 				company: 'Fox Pest Control',
 				location: 'Lexington, KY',
 				titles: ['Route Sales Manager'],
-				tenures: ['Summers 2017 – 2020'],
+				tenures: ['Summers 2017 - 2020'],
 				points: [
 					'Generated over $60,000 in 2020 and $40,000 average in 2017-2019.',
 					'Provided sales training for first-year sales reps.'
